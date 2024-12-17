@@ -1,12 +1,6 @@
 {
   "name": "envyper",
   "private": true,
-  "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
-  },
   "devDependencies": {
     "prettier": "^3.2.5",
     "turbo": "^2.3.3",

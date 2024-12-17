@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "exports": {
-    "./base": "./base.js"
+    "default": "./base.js"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.15.0",
