@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            BigInt    @id @default(autoincrement())
+  userId        String    @unique
+  createdAt     DateTime  @default(now())
+  ownedProjects Project[] @relation("creator")
+}
+
+model Project {
+  id                BigInt        @id @default(autoincrement())
+  name              String        @unique @db.VarChar(150)
+  description       String        @db.Text
+  createdAt         DateTime      @default(now())
+  creator           User          @relation(fields: [creatorId], references: [id], name: "creator")
+  creatorId         BigInt
+  ownedEnvironments Environment[] @relation("project")
+}
+
+model Environment {
+  id        BigInt        @id @default(autoincrement())
+  type      EnvType
+  project   Project       @relation(fields: [projectId], references: [id], name: "project")
+  projectId BigInt
+  variables EnvVariable[] @relation("environment")
+}
+
+enum EnvType {
+  DEV
+  TEST
+  STAGING
+  PRODUCTION
+}
+
+model EnvVariable {
+  id            BigInt      @id @default(autoincrement())
+  key           String      @db.Text
+  value         String
+  createdAt     DateTime    @default(now())
+  environment   Environment @relation(fields: [environmentId], references: [id], name: "environment")
+  environmentId BigInt
+}
