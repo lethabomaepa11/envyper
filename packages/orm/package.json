@@ -1,0 +1,22 @@
+{
+  "name": "@envyper/orm",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "bun build --entrypoints src/index.ts --outdir dist --target node",
+    "lint": "bunx eslint src/**/*.ts",
+    "format": "bunx prisma format --schema src/prisma/schema.prisma",
+    "migrate": "bunx prisma migrate dev --schema src/prisma/schema.prisma",
+    "generate": "bunx prisma generate --schema src/prisma/schema.prisma",
+    "test": "bun test",
+    "test:watch": "bun test --watch"
+  },
+  "devDependencies": {
+    "@envyper/eslint-config": "*",
+    "@envyper/typescript-config": "*"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.1.0",
+    "prisma": "^6.1.0"
+  }
+}
