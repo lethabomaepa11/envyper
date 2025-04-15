@@ -1,4 +1,5 @@
 import React from "react";
+import "./index.css";
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
