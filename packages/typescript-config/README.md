@@ -1,0 +1,1 @@
+# `@envyper/typescript-config`
