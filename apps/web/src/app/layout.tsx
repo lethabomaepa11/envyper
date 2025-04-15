@@ -1,11 +1,14 @@
 import React from "react";
 import "./index.css";
+import Providers from "../context/Providers";
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
+    <Providers>
+      <html lang="en">
+        <body>{children}</body>
+      </html>
+    </Providers>
   );
 };
 
