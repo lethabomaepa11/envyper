@@ -17,16 +17,18 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
+    {
+      label: "Docs",
+      url: process.env.NEXT_PUBLIC_DOCS_SITE_URL as string,
+    },
+    {
+      label: "About",
+      url: "/about",
+    },
+    {
+      label: "Contact",
+      url: "/contact",
+    },
   ];
 
   return (
@@ -37,30 +39,26 @@ export default function App() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <h1 className="text-4xl font-bold tracking-wide uppercase">
+          <Link
+            href="/"
+            color="foreground"
+            className="text-4xl font-bold tracking-wide uppercase"
+          >
             Envyper
-          </h1>
-          <p className="font-bold text-inherit">ACME</p>
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link aria-current="page" href="#">
-            Customers
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
-          </Link>
-        </NavbarItem>
+        {menuItems.map((item, i) => (
+          <NavbarItem key={`${item.url}-${i}`}>
+            <Link color="foreground" href={item.url}>
+              {item.label}
+            </Link>
+          </NavbarItem>
+        ))}
       </NavbarContent>
+
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
           <Link href="#">Login</Link>
@@ -71,22 +69,17 @@ export default function App() {
           </Button>
         </NavbarItem>
       </NavbarContent>
+
       <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
+        {menuItems.map((item, i) => (
+          <NavbarMenuItem key={`${item.url}-${i}`}>
             <Link
               className="w-full"
-              color={
-                index === 2
-                  ? "primary"
-                  : index === menuItems.length - 1
-                    ? "danger"
-                    : "foreground"
-              }
-              href="#"
+              color="foreground"
+              href={item.url}
               size="lg"
             >
-              {item}
+              {item.label}
             </Link>
           </NavbarMenuItem>
         ))}
