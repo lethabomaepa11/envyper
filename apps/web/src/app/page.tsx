@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "@heroui/button";
 import LinkButton from "@/components/LinkButton";
 
 const Index = () => {
@@ -22,19 +21,10 @@ const Index = () => {
               color="primary"
               variant="bordered"
               size="lg"
-              href="/sign-up"
+              href={process.env.NEXT_PUBLIC_DOCS_SITE_URL as string}
             >
               View Documentation
             </LinkButton>
-            {/* <Button
-              size="lg"
-              as={Link}
-              href={process.env.NEXT_PUBLIC_DOCS_SITE_URL}
-              variant="ghost"
-              color="primary"
-            >
-              View Documentation
-            </Button> */}
           </div>
         </div>
 
